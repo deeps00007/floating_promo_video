@@ -587,7 +587,7 @@
       "name": "floating_promo_video",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     }
   ],
   "generator": "pub",
