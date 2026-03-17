@@ -11,6 +11,28 @@ A Flutter widget package to show a draggable, floating promo/reel video over any
 - Works without backend using direct MP4 URLs
 - Drag to reposition, mute/unmute, and dismiss for the session 
 
+## ⚡ Zepto vs This Package
+
+| Feature | Zepto App | floating_promo_video |
+|---|---:|---:|
+| Floating video promo | ✅ | ✅ |
+| Drag to reposition | ✅ | ✅ |
+| Expand to fullscreen | ✅ | ✅ |
+| Instagram reels support | ❌ | ✅ |
+| Plug & play for devs | ❌ | ✅ |
+| Works without backend | ❌ | ✅ |
+| Fully customizable | ❌ | ✅ |
+
+What takes a full engineering effort in production apps can now be added in minutes.
+
+## Use Cases
+
+- **E-commerce** → Show offers like Zepto
+- **EdTech** → Promote courses
+- **OTT apps** → Highlight trending content
+- **SaaS** → Feature announcements
+- **Apps** → Showcase new features
+
 ## Preview
 
 [<img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-260" alt="Preview 1" width="260" />](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
