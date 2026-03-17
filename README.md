@@ -31,6 +31,37 @@ flutter pub get
 
 ## Quick start (recommended)
 
+### Simplest (drop-in Scaffold)
+
+Replace your `Scaffold(...)` with `FloatingPromoVideoScaffold(...)`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:floating_promo_video/floating_promo_video.dart';
+
+class DemoPage extends StatelessWidget {
+  const DemoPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingPromoVideoScaffold.fromUrls(
+      urls: const ['https://example.com/promo.mp4'],
+      body: const Center(child: Text('Your screen content')),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: 0,
+        onDestinationSelected: (_) {},
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+    );
+  }
+}
+```
+
+### Overlay (wrap body)
+
 Wrap your page body with `FloatingPromoVideoOverlay`:
 
 ```dart
@@ -38,7 +69,7 @@ import 'package:flutter/material.dart';
 import 'package:floating_promo_video/floating_promo_video.dart';
 
 class DemoPage extends StatelessWidget {
-  const DemoPage({super.key});
+  const DemoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +77,7 @@ class DemoPage extends StatelessWidget {
       body: FloatingPromoVideoOverlay(
         tokenApiUrl: 'https://yourbackend.com/api/instagram-token',
         fallbackUrls: const [
-          'https://ik.imagekit.io/projectss/new-launch.mp4',
+          'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
         ],
         child: const Center(child: Text('Your screen content')),
       ),
@@ -89,28 +120,60 @@ FloatingPromotionVideo.fromUrls(
 )
 ```
 
-## Backend response format
+## 🛠 How the Instagram API Integration Works (Backend)
 
-Your `tokenApiUrl` should return:
+To play your own Instagram reels, the package needs to hit the official Instagram Graph API. However, for security, you should never hardcode your Instagram Access Token inside the app.
+
+Instead, you provide a `tokenApiUrl` (e.g., `https://yourdomain.com/instaapi.php`). The app will call this URL to securely fetch your token, and then use that token to fetch your latest 5 Reels.
+
+### 1. What your Backend must return
+
+Your API endpoint (e.g. `instaapi.php`) MUST return JSON in this exact structure:
 
 ```json
 {
   "status": true,
   "data": [
-    { "api_key": "YOUR_INSTAGRAM_ACCESS_TOKEN" }
+    { "api_key": "YOUR_LONG_LIVED_INSTAGRAM_ACCESS_TOKEN" }
   ]
 }
 ```
 
-The package fetches media from:
+### 2. Example PHP Implementation (`instaapi.php`)
 
-`https://graph.instagram.com/me/media?fields=media_url,media_type&access_token=<token>&limit=5`
+Here is a simple example of how your PHP script should look:
 
-Only `VIDEO` media entries are used.
+```php
+<?php
+header('Content-Type: application/json');
+
+// Get this token from your Facebook/Instagram Developer Portal
+// Make sure it is a Long-Lived User Access Token
+$instagram_token = "IGAAWp7Lk... (your valid token here)";
+
+$response = [
+    "status" => true,
+    "data" => [
+        [
+            "api_key" => $instagram_token
+        ]
+    ]
+];
+
+echo json_encode($response);
+?>
+```
+
+### 3. How the package uses it
+
+Once the package securely receives your token from your backend, it automatically calls the Instagram Graph API behind the scenes:
+`https://graph.instagram.com/me/media?fields=media_url,media_type&access_token=<YOUR_TOKEN>&limit=5`
+
+It extracts all `VIDEO` media files and plays them smoothly in the floating widget!
 
 ## API reference
 
-### FloatingPromoVideoOverlay
+### FloatingPromoVideoScaffold
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|

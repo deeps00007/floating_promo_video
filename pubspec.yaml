@@ -1,6 +1,8 @@
 name: floating_promo_video
 description: A Flutter package for draggable floating promo videos with Instagram token support and direct URL playback.
-version: 0.0.1
+version: 1.0.0
+homepage: https://github.com/deeps00007/floating_promo_video
+repository: https://github.com/deeps00007/floating_promo_video
 environment:
   sdk: ">=3.0.0 <4.0.0"
 dependencies:

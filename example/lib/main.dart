@@ -1,4 +1,4 @@
-﻿// ╔══════════════════════════════════════════════════════════╗
+// ╔══════════════════════════════════════════════════════════╗
 // ║          📦 floating_promo_video — PACKAGE IMPORT         ║
 // ╚══════════════════════════════════════════════════════════╝
 import 'package:floating_promo_video/floating_promo_video.dart';
@@ -52,23 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
       const ProfilePage(),
     ];
 
-    return Scaffold(
-      // ┌─────────────────────────────────────────────────────────┐
-      // │  📦 PACKAGE USAGE: FloatingPromoVideoOverlay            │
-      // │  Wraps any widget — floats a draggable promo video      │
-      // │  over the content, fetched from Instagram or direct URL │
-      // └─────────────────────────────────────────────────────────┘
-      body: FloatingPromoVideoOverlay(
-        // Backend URL that returns Instagram token (set '' to skip)
-        tokenApiUrl: 'https://yourbackend.com/api/instagram-token',
-        // Fallback videos played when no Instagram token is available
-        fallbackUrls: const [
-          'https://ik.imagekit.io/projectss/new-launch.mp4',
-        ],
-        // Your app's screen goes here as the child
-        child: pages[_selectedIndex],
-      ),
-      // └─────────────────────────────────────────────────────────┘
+    return FloatingPromoVideoScaffold(
+      tokenApiUrl: 'https://example.com/instagramTokenApi',
+      fallbackUrls: const [
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      ],
+      body: pages[_selectedIndex],
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (i) => setState(() => _selectedIndex = i),
