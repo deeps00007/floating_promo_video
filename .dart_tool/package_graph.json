@@ -18,6 +18,11 @@
       ]
     },
     {
+      "name": "lints",
+      "version": "2.1.1",
+      "dependencies": []
+    },
+    {
       "name": "flutter_test",
       "version": "0.0.0",
       "dependencies": [
@@ -440,11 +445,6 @@
         "collection",
         "meta"
       ]
-    },
-    {
-      "name": "lints",
-      "version": "2.1.1",
-      "dependencies": []
     }
   ],
   "configVersion": 1
