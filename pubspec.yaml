@@ -1,0 +1,31 @@
+name: floating_promo_video
+description: A Flutter package for displaying floating promotional videos with draggable behavior, expandable video cards, story playlists, and progress bars.
+version: 0.0.1
+homepage: https://example.com/floating_promo_video
+repository: https://github.com/example/floating_promo_video
+issue_tracker: https://github.com/example/floating_promo_video/issues
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  video_player: ^2.2.0
+  chewie: ^1.2.2
+  http: ^1.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.11.0
+  build_runner: ^2.0.0
+  build_web_compilers: ^3.2.0
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: floating_promo_video
+        pluginClass: FloatingPromoVideoPlugin
+      ios:
+        pluginClass: FloatingPromoVideoPlugin
+      web:
+        pluginClass: FloatingPromoVideoPlugin
+        fileName: floating_promo_video_web.dart
