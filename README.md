@@ -5,9 +5,11 @@ A Flutter widget package to show a draggable, floating promo/reel video over any
 ## Why use it?
 
 - Plug-and-play overlay (`FloatingPromoVideoOverlay`) for fast integration
+- Smoothly fades and scales in 3 seconds after page load
+- Expands into an immersive full-screen video player on tap
 - Supports Instagram media via your backend token endpoint
 - Works without backend using direct MP4 URLs
-- Tap to expand/collapse, drag to reposition, mute/unmute, close for session
+- Drag to reposition, mute/unmute, and dismiss for the session 
 
 ## Preview
 
@@ -136,10 +138,11 @@ Static session state:
 
 ## Behavior
 
+- Smoothly appears after a 3-second delay with fade & scale animations
 - Starts muted by default
-- Tap to expand/collapse
+- Tap to expand into a full-screen view (saves original dragged position)
 - Drag to reposition (snaps to left/right edge on drag end)
-- Close button hides widget for session
+- Close button triggers an outro animation and hides widget for the session
 - Empty `tokenApiUrl` (`''`) skips backend and uses `fallbackUrls` directly
 
 ## Best practices
