@@ -1,4 +1,4 @@
-// ╔══════════════════════════════════════════════════════════╗
+﻿// ╔══════════════════════════════════════════════════════════╗
 // ║          📦 floating_promo_video — PACKAGE IMPORT         ║
 // ╚══════════════════════════════════════════════════════════╝
 import 'package:floating_promo_video/floating_promo_video.dart';
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return FloatingPromoVideoScaffold(
       tokenApiUrl: 'https://example.com/instagramTokenApi',
       fallbackUrls: const [
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+        'flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
       ],
       body: pages[_selectedIndex],
