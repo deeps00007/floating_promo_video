@@ -11,9 +11,10 @@ A Flutter widget package to show a draggable, floating promo/reel video over any
 
 ## Preview
 
-![Preview 1](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
+[<img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-260" alt="Preview 1" width="260" />](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
+[<img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-24-10-00_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-260" alt="Preview 2" width="260" />](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-24-10-00_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
 
-![Preview 2](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-24-10-00_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
+Click either image to open full size.
 
 ## Installation
 
