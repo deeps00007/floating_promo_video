@@ -5,26 +5,19 @@ homepage: https://github.com/deeps00007/floating_promo_video
 repository: https://github.com/deeps00007/floating_promo_video
 environment:
   sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
-  video_player: ^2.2.0
-  chewie: ^1.2.2
-  http: ^1.0.0
+  video_player: ^2.7.0
+  chewie: ^1.5.0
+  http: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.11.0
-  build_runner: ^2.0.0
-  build_web_compilers: ^3.2.0
+  lints: ^2.1.0
+
 flutter:
-  plugin:
-    platforms:
-      android:
-        package: floating_promo_video
-        pluginClass: FloatingPromoVideoPlugin
-      ios:
-        pluginClass: FloatingPromoVideoPlugin
-      web:
-        pluginClass: FloatingPromoVideoPlugin
-        fileName: floating_promo_video_web.dart
+  uses-material-design: true
