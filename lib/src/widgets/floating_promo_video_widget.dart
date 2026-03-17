@@ -103,11 +103,11 @@ class _FloatingPromotionVideoState extends State<FloatingPromotionVideo> {
   ChewieController? _chewieController;
   bool _isMuted = false;
   bool _isExpanded = false;
+  bool _isVisible = false;
+  bool _isDragging = false;
 
   final double _frameWidth = 120.0;
   final double _frameHeight = 200.0;
-  final double _expandedWidth = 210.0;
-  final double _expandedHeight = 350.0;
   String? _instagramToken;
 
   // Story-style playlist
@@ -118,12 +118,19 @@ class _FloatingPromotionVideoState extends State<FloatingPromotionVideo> {
   // Draggable position
   double? _left;
   double? _bottom;
+  double? _savedLeft;
+  double? _savedBottom;
 
   @override
   void initState() {
     super.initState();
     if (!FloatingPromotionVideo.isClosedForSession) {
       _fetchInstagramToken();
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted) {
+          setState(() => _isVisible = true);
+        }
+      });
     }
   }
 
@@ -223,7 +230,6 @@ class _FloatingPromotionVideoState extends State<FloatingPromotionVideo> {
           autoPlay: true,
           looping: false,
           showControls: false,
-          aspectRatio: _frameWidth / _frameHeight,
         );
 
         _videoController!.setVolume(_isMuted ? 0.0 : 1.0);
@@ -324,26 +330,27 @@ class _FloatingPromotionVideoState extends State<FloatingPromotionVideo> {
     setState(() {
       _isExpanded = !_isExpanded;
 
-      final double nextWidth = _isExpanded ? _expandedWidth : _frameWidth;
-      final double nextHeight = _isExpanded ? _expandedHeight : _frameHeight;
-
-      if (_left != null && _bottom != null) {
-        final size = MediaQuery.of(context).size;
-
-        if (_left! + nextWidth > size.width - 16) {
-          _left = size.width - nextWidth - 16;
-        }
-        if (_left! < 16) _left = 16;
-
-        if (_bottom! + nextHeight > size.height - 16) {
-          _bottom = size.height - nextHeight - 16;
-        }
-        if (_bottom! < 16) _bottom = 16;
+      if (_isExpanded) {
+        _savedLeft = _left;
+        _savedBottom = _bottom;
+        _left = 0;
+        _bottom = 0;
+      } else {
+        _left = _savedLeft ?? widget.initialLeft;
+        _bottom = _savedBottom ?? widget.initialBottom;
       }
     });
   }
 
-  void _closeVideo() {
+  void _closeVideo() async {
+    setState(() {
+      _isVisible = false;
+      _isExpanded = false;
+    });
+
+    await Future.delayed(const Duration(milliseconds: 300));
+    if (!mounted) return;
+
     _videoController?.removeListener(_videoListener);
     _videoController?.pause();
     _playlist.clear();
@@ -378,141 +385,168 @@ class _FloatingPromotionVideoState extends State<FloatingPromotionVideo> {
       return const SizedBox.shrink();
     }
 
-    final double currentWidth = _isExpanded ? _expandedWidth : _frameWidth;
-    final double currentHeight = _isExpanded ? _expandedHeight : _frameHeight;
+    final size = MediaQuery.of(context).size;
+    final double currentWidth = _isExpanded ? size.width : _frameWidth;
+    final double currentHeight = _isExpanded ? size.height : _frameHeight;
 
-    return Positioned(
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: _isDragging ? 0 : 300),
+      curve: Curves.easeInOutBack,
       left: _left,
       bottom: _bottom,
-      child: GestureDetector(
-        onPanUpdate: (details) {
-          setState(() {
-            _left = (_left ?? 0) + details.delta.dx;
-            _bottom = (_bottom ?? 0) - details.delta.dy;
-
-            final size = MediaQuery.of(context).size;
-            if (_left! < 16) _left = 16;
-            if (_bottom! < 16) _bottom = 16;
-            if (_left! + currentWidth > size.width - 16) {
-              _left = size.width - currentWidth - 16;
-            }
-            if (_bottom! + currentHeight > size.height - 16) {
-              _bottom = size.height - currentHeight - 16;
-            }
-          });
-        },
-        onPanEnd: (_) {
-          final screenWidth = MediaQuery.of(context).size.width;
-          setState(() {
-            if ((_left ?? 0) + (currentWidth / 2) < screenWidth / 2) {
-              _left = 16.0;
-            } else {
-              _left = screenWidth - currentWidth - 16.0;
-            }
-          });
-        },
-        onTap: _toggleExpand,
-        child: AnimatedContainer(
+      width: currentWidth,
+      height: currentHeight,
+      child: AnimatedScale(
+        scale: _isVisible ? 1.0 : 0.0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.elasticOut,
+        child: AnimatedOpacity(
+          opacity: _isVisible ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 300),
-          width: currentWidth,
-          height: currentHeight,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.25),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Stack(
-            children: [
-              // Video player
-              if (_chewieController != null &&
-                  _videoController != null &&
-                  _videoController!.value.isInitialized)
-                ClipRRect(
-                  key: ValueKey(_currentIndex),
-                  borderRadius: BorderRadius.circular(8),
-                  child: Chewie(controller: _chewieController!),
-                )
-              else
-                const Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: Colors.white24,
-                  ),
-                ),
+          child: GestureDetector(
+            onPanStart: (details) {
+              if (_isExpanded) return;
+              setState(() => _isDragging = true);
+            },
+            onPanUpdate: (details) {
+              if (_isExpanded) return;
+              setState(() {
+                _left = (_left ?? 0) + details.delta.dx;
+                _bottom = (_bottom ?? 0) - details.delta.dy;
 
-              // Mute button
-              Positioned(
-                top: 0,
-                left: 0,
-                child: IconButton(
-                  icon: Icon(
-                    _isMuted ? Icons.volume_off : Icons.volume_up,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                  onPressed: _toggleMute,
-                  padding: EdgeInsets.zero,
-                  tooltip: _isMuted ? 'Unmute' : 'Mute',
-                ),
-              ),
-
-              // Close button
-              Positioned(
-                top: 0,
-                right: 0,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                  onPressed: _closeVideo,
-                  padding: EdgeInsets.zero,
-                  tooltip: 'Close',
-                ),
-              ),
-
-              // Story-style progress bars
-              Positioned(
-                bottom: 1,
-                left: 2,
-                right: 2,
-                child: Row(
-                  children: List.generate(_playlist.length, (index) {
-                    return Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        height: 3,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(2),
+                if (_left! < 16) _left = 16;
+                if (_bottom! < 16) _bottom = 16;
+                if (_left! + currentWidth > size.width - 16) {
+                  _left = size.width - currentWidth - 16;
+                }
+                if (_bottom! + currentHeight > size.height - 16) {
+                  _bottom = size.height - currentHeight - 16;
+                }
+              });
+            },
+            onPanEnd: (_) {
+              if (_isExpanded) return;
+              setState(() {
+                _isDragging = false;
+                if ((_left ?? 0) + (currentWidth / 2) < size.width / 2) {
+                  _left = 16.0;
+                } else {
+                  _left = size.width - currentWidth - 16.0;
+                }
+              });
+            },
+            onTap: _toggleExpand,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(_isExpanded ? 0 : 20),
+                boxShadow: _isExpanded
+                    ? []
+                    : [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.25),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
                         ),
-                        child: FractionallySizedBox(
-                          alignment: Alignment.centerLeft,
-                          widthFactor: index < _currentIndex
-                              ? 1.0
-                              : (index == _currentIndex
-                                  ? _currentProgress
-                                  : 0.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: widget.accentColor,
-                              borderRadius: BorderRadius.circular(2),
-                            ),
-                          ),
+                      ],
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Video player
+                  if (_chewieController != null &&
+                      _videoController != null &&
+                      _videoController!.value.isInitialized)
+                    ClipRRect(
+                      key: ValueKey(_currentIndex),
+                      borderRadius: BorderRadius.circular(_isExpanded ? 0 : 8),
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: _videoController!.value.size.width,
+                          height: _videoController!.value.size.height,
+                          child: Chewie(controller: _chewieController!),
                         ),
                       ),
-                    );
-                  }),
-                ),
+                    )
+                  else
+                    const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white24,
+                      ),
+                    ),
+
+                  // Mute button
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: IconButton(
+                      icon: Icon(
+                        _isMuted ? Icons.volume_off : Icons.volume_up,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                      onPressed: _toggleMute,
+                      padding: EdgeInsets.zero,
+                      tooltip: _isMuted ? 'Unmute' : 'Mute',
+                    ),
+                  ),
+
+                  // Close button
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                      onPressed: _closeVideo,
+                      padding: EdgeInsets.zero,
+                      tooltip: 'Close',
+                    ),
+                  ),
+
+                  // Story-style progress bars
+                  Positioned(
+                    bottom: 1,
+                    left: 2,
+                    right: 2,
+                    child: Row(
+                      children: List.generate(_playlist.length, (index) {
+                        return Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 2),
+                            height: 3,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.3),
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            child: FractionallySizedBox(
+                              alignment: Alignment.centerLeft,
+                              widthFactor: index < _currentIndex
+                                  ? 1.0
+                                  : (index == _currentIndex
+                                      ? _currentProgress
+                                      : 0.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: widget.accentColor,
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
