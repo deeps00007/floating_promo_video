@@ -33,12 +33,16 @@ What takes a full engineering effort in production apps can now be added in minu
 - **SaaS** → Feature announcements
 - **Apps** → Showcase new features
 
-## Preview
+## See it in Action
 
+**The Inspiration (Zepto App):**  
+[<img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-41-08-08_d13708f0377555913763db32da1326f2.jpg%20(1).jpeg?updatedAt=1773751312469&tr=w-260" alt="Zepto Inspiration" width="260" />](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-41-08-08_d13708f0377555913763db32da1326f2.jpg%20(1).jpeg?updatedAt=1773751312469)
+
+**What you can build in minutes (`floating_promo_video`):**  
 [<img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-260" alt="Preview 1" width="260" />](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
 [<img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-29-39-27_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-260" alt="Preview 2" width="260" />](https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-29-39-27_e3be76f344a504139ded1167e197fd03.jpg.jpeg)
 
-Click either image to open full size.
+*Click any image to open full size.*
 
 ## Installation
 
