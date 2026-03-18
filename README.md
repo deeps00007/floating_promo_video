@@ -38,20 +38,24 @@ What takes a full engineering effort in production apps can now be added in minu
 <table style="border:none; text-align: center;">
 <tr>
   <td><b>The Inspiration (Zepto)</b></td>
+  <td></td>
   <td colspan="2"><b>What you can build in minutes</b></td>
 </tr>
 <tr>
-  <td>
+  <td valign="middle">
     <a href="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-41-08-08_d13708f0377555913763db32da1326f2.jpg%20(1).jpeg?updatedAt=1773751312469">
       <img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-41-08-08_d13708f0377555913763db32da1326f2.jpg%20(1).jpeg?updatedAt=1773751312469&tr=w-180" alt="Zepto Inspiration" width="180" />
     </a>
   </td>
-  <td>
+  <td valign="middle" style="font-size: 32px;">
+    ➡️
+  </td>
+  <td valign="middle">
     <a href="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg">
       <img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-180" alt="Preview 1" width="180" />
     </a>
   </td>
-  <td>
+  <td valign="middle">
     <a href="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-29-39-27_e3be76f344a504139ded1167e197fd03.jpg.jpeg">
       <img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-29-39-27_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-180" alt="Preview 2" width="180" />
     </a>
