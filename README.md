@@ -1,291 +1,160 @@
-# floating_promo_video
+<div align="center">
 
-A Flutter widget package to show a draggable, floating promo/reel video over any screen.
+<img src="https://raw.githubusercontent.com/gvenusleo/MeRead/master/assets/icon/icon.png" width="100" alt="MeRead Logo" />
 
-## Why use it?
+# MeRead
 
-- Plug-and-play overlay (`FloatingPromoVideoOverlay`) for fast integration
-- Smoothly fades and scales in 3 seconds after page load
-- Expands into an immersive full-screen video player on tap
-- Supports Instagram media via your backend token endpoint
-- Works without backend using direct MP4 URLs
-- Drag to reposition, mute/unmute, and dismiss for the session 
+### *Project Refactoring*
 
-## ⚡ Zepto vs This Package
+**A concise and easy-to-use RSS reader built with [Flutter](https://flutter.dev) and designed with [Material You](https://m3.material.io)**
 
-| Feature | Zepto App | floating_promo_video |
-|---|---:|---:|
-| Floating video promo | ✅ | ✅ |
-| Drag to reposition | ✅ | ✅ |
-| Expand to fullscreen | ✅ | ✅ |
-| Instagram reels support | ❌ | ✅ |
-| Plug & play for devs | ❌ | ✅ |
-| Works without backend | ❌ | ✅ |
-| Fully customizable | ❌ | ✅ |
+[![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
+[![Release](https://img.shields.io/badge/release-v0.6.1-blue?style=flat-square)](https://github.com/gvenusleo/MeRead/releases)
+[![Downloads](https://img.shields.io/badge/downloads-7.3k-brightgreen?style=flat-square)](https://github.com/gvenusleo/MeRead/releases)
+[![Flutter](https://img.shields.io/badge/built%20with-Flutter-02569B?style=flat-square&logo=flutter)](https://flutter.dev)
 
-What takes a full engineering effort in production apps can now be added in minutes.
+English | [简体中文](README_ZH.md)
 
-## Use Cases
+</div>
 
-- **E-commerce** → Show offers like Zepto
-- **EdTech** → Promote courses
-- **OTT apps** → Highlight trending content
-- **SaaS** → Feature announcements
-- **Apps** → Showcase new features
+---
 
-## See it in Action
+## Screenshots
 
-<table style="border:none; text-align: center;">
-<tr>
-  <td><b>The Inspiration (Zepto)</b></td>
-  <td></td>
-  <td colspan="2"><b>What you can build in minutes</b></td>
-</tr>
-<tr>
-  <td valign="middle">
-    <a href="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-41-08-08_d13708f0377555913763db32da1326f2.jpg%20(1).jpeg?updatedAt=1773751312469">
-      <img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-41-08-08_d13708f0377555913763db32da1326f2.jpg%20(1).jpeg?updatedAt=1773751312469&tr=w-180" alt="Zepto Inspiration" width="180" />
-    </a>
-  </td>
-  <td valign="middle" style="font-size: 32px;">
-    ➡️
-  </td>
-  <td valign="middle">
-    <a href="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg">
-      <img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-13-23-56-30_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-180" alt="Preview 1" width="180" />
-    </a>
-  </td>
-  <td valign="middle">
-    <a href="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-29-39-27_e3be76f344a504139ded1167e197fd03.jpg.jpeg">
-      <img src="https://ik.imagekit.io/projectss/Screenshot_2026-03-17-17-29-39-27_e3be76f344a504139ded1167e197fd03.jpg.jpeg?tr=w-180" alt="Preview 2" width="180" />
-    </a>
-  </td>
-</tr>
+<div align="center">
+<table>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/gvenusleo/MeRead/master/assets/screenshots/1.png" width="180" alt="Feed List" /><br/><sub>Feed List</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/gvenusleo/MeRead/master/assets/screenshots/2.png" width="180" alt="Article View" /><br/><sub>Article View</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/gvenusleo/MeRead/master/assets/screenshots/3.png" width="180" alt="Edit Feed" /><br/><sub>Edit Feed</sub></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/gvenusleo/MeRead/master/assets/screenshots/4.png" width="180" alt="Settings" /><br/><sub>Settings</sub></td>
+  </tr>
 </table>
+</div>
 
-*Click any image to open full size.*
+---
+
+## Overview
+
+MeRead is a clean, minimal RSS reader for Android, built with Flutter and following Material You design guidelines. It adapts to your device's dynamic color theme, making it feel right at home on any Android 12+ device.
+
+The project is currently undergoing a **major refactoring** to improve performance, architecture, and feature coverage. Contributions and feedback are welcome.
+
+---
+
+## Features
+
+- **RSS / Atom feed support** — subscribe to any standard RSS or Atom feed
+- **Material You design** — dynamic color theming that adapts to your wallpaper on Android 12+
+- **Clean reading experience** — distraction-free article view
+- **Feed management** — add, edit, and organize your subscriptions easily
+- **Multilingual support** — available in English and Simplified Chinese
+- **Lightweight** — built with Flutter for smooth, native-like performance
+- **Offline-friendly** — read cached articles without an active connection
+
+---
 
 ## Installation
 
-```yaml
-dependencies:
-  floating_promo_video: ^0.0.1
-```
+### Download APK
+
+Download the latest release from the [Releases page](https://github.com/gvenusleo/MeRead/releases).
+
+### Build from Source
+
+**Prerequisites:**
+- Flutter SDK `>=3.0.0`
+- Dart SDK `>=3.0.0`
+- Android Studio or VS Code with Flutter plugin
+
+**Steps:**
 
 ```bash
+# Clone the repository
+git clone https://github.com/gvenusleo/MeRead.git
+cd MeRead
+
+# Install dependencies
 flutter pub get
+
+# Run on a connected device or emulator
+flutter run
+
+# Build a release APK
+flutter build apk --release
 ```
 
-## Quick start (recommended)
+---
 
-### Simplest (drop-in Scaffold)
+## Project Structure
 
-Replace your `Scaffold(...)` with `FloatingPromoVideoScaffold(...)`:
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:floating_promo_video/floating_promo_video.dart';
-
-class DemoPage extends StatelessWidget {
-  const DemoPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingPromoVideoScaffold.fromUrls(
-      urls: const ['https://example.com/promo.mp4'],
-      body: const Center(child: Text('Your screen content')),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: 0,
-        onDestinationSelected: (_) {},
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-      ),
-    );
-  }
-}
+```
+MeRead/
+├── lib/
+│   ├── main.dart              # App entry point
+│   ├── models/                # Data models (Feed, Article)
+│   ├── pages/                 # Screens (Home, Reader, Settings)
+│   ├── services/              # RSS parsing, HTTP, storage
+│   ├── widgets/               # Reusable UI components
+│   └── utils/                 # Helpers and constants
+├── assets/
+│   └── icon/                  # App icons
+├── android/                   # Android-specific config
+└── pubspec.yaml               # Dependencies
 ```
 
-### Overlay (wrap body)
+---
 
-Wrap your page body with `FloatingPromoVideoOverlay`:
+## Dependencies
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:floating_promo_video/floating_promo_video.dart';
+| Package | Purpose |
+|---|---|
+| `flutter` | UI framework |
+| `http` | Network requests for fetching feeds |
+| `webfeed` | RSS / Atom feed parsing |
+| `sqflite` | Local database for storing feeds and articles |
+| `shared_preferences` | Persisting user settings |
+| `dynamic_color` | Material You dynamic theming |
+| `flutter_html` | Rendering article HTML content |
 
-class DemoPage extends StatelessWidget {
-  const DemoPage({Key? key}) : super(key: key);
+> See [`pubspec.yaml`](pubspec.yaml) for the full and up-to-date list.
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FloatingPromoVideoOverlay(
-        tokenApiUrl: 'https://yourbackend.com/api/instagram-token',
-        fallbackUrls: const [
-          'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-        ],
-        child: const Center(child: Text('Your screen content')),
-      ),
-    );
-  }
-}
-```
+---
 
-## URL-only mode (no backend)
+## Contributing
 
-```dart
-FloatingPromoVideoOverlay.fromUrls(
-  child: const YourScreen(),
-  urls: const [
-    'https://example.com/video1.mp4',
-    'https://example.com/video2.mp4',
-  ],
-)
-```
+Contributions are welcome! Here's how to get started:
 
-## Manual mode (custom Stack)
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/your-feature-name`
+3. **Commit** your changes: `git commit -m 'Add: your feature description'`
+4. **Push** to your branch: `git push origin feature/your-feature-name`
+5. **Open** a Pull Request
 
-```dart
-Stack(
-  children: [
-    const YourContent(),
-    FloatingPromotionVideo(
-      tokenApiUrl: 'https://yourbackend.com/api/instagram-token',
-      fallbackUrls: const ['https://example.com/promo.mp4'],
-    ),
-  ],
-)
-```
+Please open an issue first for major changes to discuss what you'd like to change.
 
-Direct URL factory:
+---
 
-```dart
-FloatingPromotionVideo.fromUrls(
-  urls: const ['https://example.com/promo.mp4'],
-)
-```
+## Roadmap
 
-## 🛠 How the Instagram API Integration Works (Backend)
+- [ ] OPML import / export
+- [ ] Feed categories and grouping
+- [ ] Article search
+- [ ] Sync with external RSS services (Fever, Miniflux)
+- [ ] Widget support for home screen
+- [ ] iOS support
 
-To play your own Instagram reels, the package needs to hit the official Instagram Graph API. However, for security, you should never hardcode your Instagram Access Token inside the app.
+---
 
-Instead, you provide a `tokenApiUrl` (e.g., `https://yourdomain.com/instaapi.php`). The app will call this URL to securely fetch your token, and then use that token to fetch your latest 5 Reels.
+## License
 
-### 1. What your Backend must return
+This project is licensed under the **GNU General Public License v3.0**.
+See the [LICENSE](LICENSE) file for full details.
 
-Your API endpoint (e.g. `instaapi.php`) MUST return JSON in this exact structure:
+---
 
-```json
-{
-  "status": true,
-  "data": [
-    { "api_key": "YOUR_LONG_LIVED_INSTAGRAM_ACCESS_TOKEN" }
-  ]
-}
-```
+<div align="center">
 
-### 2. Example PHP Implementation (`instaapi.php`)
+Made with ♥ using Flutter
 
-Here is a simple example of how your PHP script should look:
-
-```php
-<?php
-header('Content-Type: application/json');
-
-// Get this token from your Facebook/Instagram Developer Portal
-// Make sure it is a Long-Lived User Access Token
-$instagram_token = "IGAAWp7Lk... (your valid token here)";
-
-$response = [
-    "status" => true,
-    "data" => [
-        [
-            "api_key" => $instagram_token
-        ]
-    ]
-];
-
-echo json_encode($response);
-?>
-```
-
-### 3. How the package uses it
-
-Once the package securely receives your token from your backend, it automatically calls the Instagram Graph API behind the scenes:
-`https://graph.instagram.com/me/media?fields=media_url,media_type&access_token=<YOUR_TOKEN>&limit=5`
-
-It extracts all `VIDEO` media files and plays them smoothly in the floating widget!
-
-## API reference
-
-### FloatingPromoVideoScaffold
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `child` | `Widget` | required | Content shown behind floating video |
-| `tokenApiUrl` | `String` | required | Backend endpoint that returns Instagram token |
-| `fallbackUrls` | `List<String>` | built-in demo URLs | Used when backend/Instagram is unavailable |
-| `accentColor` | `Color` | `Color(0xFFF60000)` | Story progress bar color |
-| `initialLeft` | `double` | `16.0` | Initial distance from left edge |
-| `initialBottom` | `double` | `16.0` | Initial distance from bottom edge |
-
-Factory constructor:
-- `FloatingPromoVideoOverlay.fromUrls(...)`
-
-### FloatingPromotionVideo
-
-Same parameters as overlay version, for manual placement in your own `Stack`.
-
-Factory constructor:
-- `FloatingPromotionVideo.fromUrls(...)`
-
-Static session state:
-- `FloatingPromotionVideo.isClosedForSession`
-  - Becomes `true` when user closes the widget
-  - Keeps widget hidden for the current app session
-
-## Behavior
-
-- Smoothly appears after a 3-second delay with fade & scale animations
-- Starts muted by default
-- Tap to expand into a full-screen view (saves original dragged position)
-- Drag to reposition (snaps to left/right edge on drag end)
-- Close button triggers an outro animation and hides widget for the session
-- Empty `tokenApiUrl` (`''`) skips backend and uses `fallbackUrls` directly
-
-## Best practices
-
-- Wrap only **page body content** with `FloatingPromoVideoOverlay`
-  - This avoids overlap with `bottomNavigationBar`
-- Provide at least one valid MP4 URL in `fallbackUrls`
-- Prefer CDN-hosted video URLs for faster startup and smoother playback
-
-## Reset session close state
-
-```dart
-FloatingPromotionVideo.isClosedForSession = false;
-```
-
-## Troubleshooting
-
-### Widget not visible
-- Ensure at least one URL is playable
-- Verify backend response format exactly matches contract
-- Check network access to backend and video URLs
-
-### Instagram media not loading
-- Access token may be expired/invalid
-- Endpoint may return media types other than `VIDEO`
-- Backend may return `status: false` or empty `data`
-
-### Overlapping bottom navigation
-- Wrap only the screen body with `FloatingPromoVideoOverlay`, not the full app shell
-
-## Import
-
-```dart
-import 'package:floating_promo_video/floating_promo_video.dart';
-```
-
+</div>
