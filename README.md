@@ -3,7 +3,7 @@
 # floating_promo_video
  
 [![License](https://img.shields.io/badge/license-MIT-orange?style=flat-square)](LICENSE)
-[![Pub Version](https://img.shields.io/badge/pub-v0.0.1-blue?style=flat-square)](https://pub.dev/packages/floating_promo_video)
+[![Pub Version](https://img.shields.io/badge/pub-v1.0.0.-blue?style=flat-square)](https://pub.dev/packages/floating_promo_video)
 [![Flutter](https://img.shields.io/badge/built%20with-Flutter-02569B?style=flat-square&logo=flutter)](https://flutter.dev)
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-lightgrey?style=flat-square)](https://flutter.dev)
  
